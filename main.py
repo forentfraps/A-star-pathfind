@@ -1,3 +1,4 @@
+import colorama
 class Astar:
     def __init__(self, w, h, destn, start):
         
@@ -21,13 +22,13 @@ class Astar:
                     case 0:
                         s += str(number) + "  "
                     case 1:
-                        s += ("\033[96m")+str(number)+str("\033[0m") + "  "
+                        s += colorama.Fore.BLUE+str(number)+colorama.Style.RESET_ALL + "  "
                     case 2:
                         s += str(number) + "  "
                     case 3:
                         s += str(number) + "  "
                     case 4:
-                        s += ("\033[1;35;40m")+str(number)+str("\033[0m") + "  "
+                        s += colorama.Fore.RED+str(number)+colorama.Style.RESET_ALL + "  "
 
 
             print(s)
@@ -134,7 +135,6 @@ class Astar:
         self.costgrid[y0][x0] = [0, self.cost(self.start,self.destn), self.cost(self.start,self.destn)]
         self.collapse(self.start)
         while True:
-
             opens = []
             glm = float("inf")
             for y1 in range(self.h):
