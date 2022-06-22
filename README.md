@@ -4,6 +4,6 @@
 The code is well commented, so nothing much in here
 
 
-![image](https://user-images.githubusercontent.com/29946764/175129884-fc4cec36-329c-45a0-b2d1-aa6f162b3eb8.png)
+![image](https://user-images.githubusercontent.com/29946764/175162309-f7088603-a9fb-4e1a-8b64-cc7c6137f4fa.png)
 
 An example of algorithm capabilities
