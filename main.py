@@ -179,7 +179,7 @@ class Astar:
             
                             
 if __name__ == "__main__":
-    ## Just some basic example
+    ## Just a basic example
     destn = (5,5)
     start = (0,0)
     w, h = 6, 6
