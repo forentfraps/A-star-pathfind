@@ -1,4 +1,5 @@
 import colorama
+import copy
 class Astar:
     def __init__(self, w, h, destn, start):
         
@@ -13,7 +14,7 @@ class Astar:
     def pf(self):
         """
         Prints field in a fancy way\n
-        has colours (use in PowerShell)
+        (has colours) 
         """
         for l in self.field:
             s = ""
@@ -24,9 +25,9 @@ class Astar:
                     case 1:
                         s += colorama.Fore.BLUE+str(number)+colorama.Style.RESET_ALL + "  "
                     case 2:
-                        s += str(number) + "  "
+                        s += colorama.Fore.YELLOW+str(number)+colorama.Style.RESET_ALL + "  "
                     case 3:
-                        s += str(number) + "  "
+                        s += colorama.Fore.GREEN+str(number)+colorama.Style.RESET_ALL + "  "
                     case 4:
                         s += colorama.Fore.RED+str(number)+colorama.Style.RESET_ALL + "  "
 
@@ -134,7 +135,9 @@ class Astar:
         self.field[y0][x0] = 2
         self.costgrid[y0][x0] = [0, self.cost(self.start,self.destn), self.cost(self.start,self.destn)]
         self.collapse(self.start)
-        while True:
+        old_field = ["Braza"]
+        while old_field != self.field:
+            old_field = copy.deepcopy(self.field)
             opens = []
             glm = float("inf")
             for y1 in range(self.h):
@@ -159,10 +162,13 @@ class Astar:
         """
         x1, y1 = self.destn
         self.field[y1][x1] = 4
-        while True:
+        old_field = ["Braza"]
+        while old_field != self.field:
+            old_field = copy.deepcopy(self.field)
             cords_adj = self.get_adj((x1,y1))
             glm = float("inf")
             glmg = float("inf")
+            rp = (0,0)
             for point in cords_adj:
                 x2, y2 = point
                 if point == self.start:
@@ -180,12 +186,15 @@ class Astar:
                             
 if __name__ == "__main__":
     ## Just a basic example
-    destn = (5,5)
+    destn = (14,14)
     start = (0,0)
-    w, h = 6, 6
+    w, h = 15, 15
     field = Astar(w,h,destn, start)
-    field.mwall([2],[1,2,3,4])
-    field.mwall([3],[1])
+    field.mwall([2],[1,2,3,4,5,6,7])
+    field.mwall([13],[10,11,13,14])
+    field.mwall([6],[2,3,4,5,6,7])
+    field.mwall([5],[7])
+    field.mwall([7],[1,2])
     
     
     field.pf()
